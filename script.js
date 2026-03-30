@@ -7,15 +7,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Thêm thuộc tính transition để hiệu ứng mượt mà
     avatar.style.transition = 'transform 0.5s ease, box-shadow 0.3s ease';
+    avatar.style.cursor = 'pointer';
 
     avatar.addEventListener('click', function() {
         if (!isRotated) {
-            avatar.style.transform = 'rotate(360deg) scale(1.1)'; // Xoay 360 độ và phóng to một chút
-            avatar.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.3)';
+            avatar.style.transform = 'rotate(360deg) scale(1.1)'; // Xoay 360 độ và phóng to 10%
+            avatar.style.boxShadow = '0 8px 20px rgba(0, 123, 255, 0.4)'; // Bóng đổ màu xanh dương hợp với theme
             isRotated = true;
         } else {
             avatar.style.transform = 'rotate(0deg) scale(1)'; // Trả về như cũ
-            avatar.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.1)';
+            avatar.style.boxShadow = 'none'; // Reset bóng
             isRotated = false;
         }
     });
@@ -24,32 +25,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const infoItems = document.querySelectorAll('.info-item');
 
     infoItems.forEach(item => {
-        // Thêm transition cho mượt
+        // Thêm transition và đệm (padding) để khối thông tin đẹp hơn khi hover
         item.style.transition = 'all 0.3s ease';
-        item.style.cursor = 'pointer'; // Đổi con trỏ chuột thành hình bàn tay
+        item.style.cursor = 'pointer';
+        item.style.borderRadius = '6px';
+        item.style.padding = '10px'; // Thêm khoảng không gian bên trong
+        item.style.margin = '0 -10px'; // Bù trừ padding để chữ vẫn thẳng hàng
 
         // Khi rê chuột vào (Hover)
         item.addEventListener('mouseenter', () => {
-            item.style.backgroundColor = 'rgba(255, 255, 255, 0.4)'; // Sáng lên
+            item.style.backgroundColor = '#f0f8ff'; // Nền xanh nhạt (AliceBlue) thay vì trắng
             item.style.transform = 'translateX(10px)'; // Dịch sang phải 10px
+            item.style.borderBottomColor = 'transparent'; // Ẩn viền đứt nét ở dưới cho gọn
         });
 
         // Khi đưa chuột ra
         item.addEventListener('mouseleave', () => {
-            item.style.backgroundColor = 'rgba(255, 255, 255, 0.2)'; // Trở lại màu cũ
+            item.style.backgroundColor = 'transparent'; // Trở lại trong suốt
             item.style.transform = 'translateX(0)'; // Trở lại vị trí cũ
+            item.style.borderBottomColor = '#dee2e6'; // Hiện lại viền đứt nét
         });
 
         // --- Hiệu ứng 3: Hiển thị thông báo khi click vào từng dòng ---
         item.addEventListener('click', () => {
-            // Lấy nội dung của span thứ nhất (tiêu đề) và span thứ hai (nội dung)
-            const label = item.querySelector('span:first-child').innerText;
-            const value = item.querySelector('span:last-child').innerText;
-            
-            // Xóa dấu hai chấm ở cuối label nếu có
-            const cleanLabel = label.replace(':', '');
-            
-            alert(`Bạn đang xem thông tin: ${cleanLabel} là ${value}`);
-        });
-    });
-});
+            // Lấy nội dung của span thứ nhất (
