@@ -1,78 +1,171 @@
-body {
+/* =========================================
+   1. CÀI ĐẶT CHUNG VÀ NỀN TRANG WEB
+========================================= */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e9ecef; /* Màu nền xám nhạt */
+    color: #333;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     min-height: 100vh;
-}
-
-.profile-container {
-    /* Yêu cầu 1: Box Model (width, padding, margin, border) */
-    width: 350px;
     padding: 40px 20px;
-    margin: 20px;
-    border: 2px solid #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    box-sizing: border-box;
-
-    /* Yêu cầu 2: Background gradient */
-    background: linear-gradient(135deg, #6dd5ed, #2193b0);
-    color: white;
-
-    /* Yêu cầu 3: Sắp xếp thông tin với Flexbox */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
-.avatar {
-    width: 120px;
-    height: 120px;
+/* =========================================
+   2. KHUNG PROFILE CHÍNH
+========================================= */
+.profile-container {
     background-color: #ffffff;
-    border-radius: 50%;
-    border: 4px solid #ffffff;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px; /* Rộng rãi để hiển thị đẹp phần dự án */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    text-align: center; /* Căn giữa avatar và tên */
 }
 
+/* Ảnh đại diện */
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #007bff; /* Viền màu xanh dương */
+    padding: 4px;
+    margin-bottom: 20px;
+}
+
+/* Tên và Tiêu đề */
 .name {
-    margin: 0 0 5px 0;
-    font-size: 26px;
-    font-weight: bold;
-    text-align: center;
+    font-size: 2rem;
+    color: #212529;
+    margin-bottom: 8px;
 }
 
 .title {
-    margin: 0 0 20px 0;
-    font-size: 16px;
-    font-style: italic;
-    opacity: 0.9;
+    font-size: 1.1rem;
+    color: #6c757d;
+    margin-bottom: 30px;
+    font-weight: 500;
 }
 
+/* =========================================
+   3. DANH SÁCH THÔNG TIN CÁ NHÂN
+========================================= */
 .info-list {
-    /* Áp dụng Flexbox cho danh sách thông tin */
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    width: 100%;
+    gap: 15px;
+    max-width: 450px;
+    margin: 0 auto 40px auto; /* Căn giữa khối thông tin */
+    text-align: left;
 }
 
 .info-item {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 12px 15px;
-    border-radius: 10px;
-    font-size: 15px;
-    /* Box Model cho các mục con */
-    border: 1px solid rgba(255, 255, 255, 0.3);
     display: flex;
     justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #dee2e6;
 }
 
 .info-item span:first-child {
-    font-weight: bold;
+    font-weight: 600;
+    color: #495057;
+}
+
+.info-item span:last-child {
+    color: #212529;
+    font-weight: 500;
+}
+
+/* =========================================
+   4. PHẦN DỰ ÁN CÁ NHÂN
+========================================= */
+.projects-section {
+    margin-top: 40px;
+    text-align: left; /* Phần dự án căn trái cho dễ đọc */
+}
+
+.projects-section h2 {
+    font-size: 1.5rem;
+    color: #212529;
+    border-bottom: 3px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    display: inline-block; /* Đường viền chỉ dài bằng chữ */
+}
+
+/* Từng khung dự án */
+.project-item {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 5px solid #007bff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-item:hover {
+    transform: translateX(8px); /* Trượt nhẹ sang phải khi hover */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.project-item h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.25rem;
+    color: #212529;
+}
+
+.project-item p {
+    margin: 0 0 15px 0;
+    font-size: 0.95rem;
+    color: #495057;
+    line-height: 1.6;
+}
+
+/* =========================================
+   5. THẺ CÔNG NGHỆ (TAGS)
+========================================= */
+.tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px; /* Cách một khoảng so với nút bấm */
+}
+
+.tech-tag {
+    background-color: #e2e8f0;
+    color: #334155;
+    font-size: 0.8rem;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* =========================================
+   6. NÚT BẤM XEM DEMO
+========================================= */
+.btn-demo {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.btn-demo:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px); /* Nảy lên trên nhẹ */
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3); /* Tỏa sáng nhẹ màu xanh */
 }
